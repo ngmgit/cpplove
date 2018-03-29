@@ -12,6 +12,13 @@ MyLinkedList::~MyLinkedList()
 {
 }
 
+void MyLinkedList::insert(std::initializer_list<int> list)
+{
+    for (auto listIterator = list.begin(); listIterator != list.end(); listIterator++) {
+        insert(*listIterator);
+    }
+}
+
 void MyLinkedList::insert(int value)
 {
     Node *newNode = new Node;
@@ -66,5 +73,14 @@ bool MyLinkedList::remove(int value)
         return true;
     } else {
         return false;
+    }
+}
+
+void MyLinkedList::forEach(printFunc print)
+{
+    Node *itr = _head;
+    while (itr) {
+        print(itr->value);
+        itr = itr->next;
     }
 }

@@ -8,7 +8,7 @@
             "type": "shell",
             "command": "g++",
             "args": [
-                "-g", "-Wshadow", "-std=c++14", "main.cpp", "LinkedList.cpp"
+                "-g", "-Wshadow", "-std=c++17", "main.cpp", "LinkedList.cpp"
             ],
             "group": {
                 "kind": "build",
