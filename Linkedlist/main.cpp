@@ -3,6 +3,7 @@
 #include <iostream>
 
 void print(int N) { std::cout << N << ' '; }
+void multiplyBy10(Node *node) { node->value = node->value * 10;}
 
 int main(int argc, char *argv[])
 {
@@ -15,6 +16,10 @@ int main(int argc, char *argv[])
     l.remove(20);
 
     //advanced
-    l.insert({10, 20, 30});
+    l.insert({10, 20});
+    l.forEach(print);
+    l.forEach(multiplyBy10);
+    l.forEach(print);
+    l.reverse();
     l.forEach(print);
 }

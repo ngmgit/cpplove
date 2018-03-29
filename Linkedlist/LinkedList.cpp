@@ -76,11 +76,39 @@ bool MyLinkedList::remove(int value)
     }
 }
 
+void MyLinkedList::reverse()
+{
+    Node *temp = _head;
+    _head = _tail;
+    _tail = temp;
+
+    Node *prev = _tail;
+    Node *itr = prev->next;
+
+    while (itr) {
+        temp = itr->next;
+        itr->next = prev;
+        prev = itr;
+        itr = temp;
+    }
+
+    _tail->next = nullptr;
+}
+
 void MyLinkedList::forEach(printFunc print)
 {
     Node *itr = _head;
     while (itr) {
         print(itr->value);
+        itr = itr->next;
+    }
+}
+
+void MyLinkedList::forEach(modifyFunc modify)
+{
+    Node *itr = _head;
+    while (itr) {
+        modify(itr);
         itr = itr->next;
     }
 }
