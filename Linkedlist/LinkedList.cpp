@@ -1,25 +1,14 @@
 #include <iostream>
 #include "LinkedList.h"
 
-MyLinkedList::MyLinkedList() :
-    _head(nullptr),
-    _tail(nullptr),
-    _size(0)
-{
-}
-
-MyLinkedList::~MyLinkedList()
-{
-}
-
 void MyLinkedList::insert(std::initializer_list<int> list)
 {
-    for (auto listIterator = list.begin(); listIterator != list.end(); listIterator++) {
-        insert(*listIterator);
+    for (const auto val : list) {
+        insert(val);
     }
 }
 
-void MyLinkedList::insert(int value)
+void MyLinkedList::insert(const int value)
 {
     Node *newNode = new Node;
     newNode->value = value;
@@ -27,20 +16,15 @@ void MyLinkedList::insert(int value)
 
     if (_head == nullptr) {
         _head = newNode;
-        _head->value = value;
-        _head->next = nullptr;
         _tail = _head;
-        _size += 1;
     } else {
         _tail->next = newNode;
         _tail = newNode;
-        _size += 1;
     }
+    _size += 1;
 }
 
-
-
-bool MyLinkedList::remove(int value)
+bool MyLinkedList::remove(const int value)
 {
 
     if (_head == nullptr) {
@@ -53,8 +37,8 @@ bool MyLinkedList::remove(int value)
     while(itr->next != nullptr) {
         if (itr->value == value) {
             if (itr == _head) {
-            _head = _head->next;
-            itr = nullptr;
+                _head = _head->next;
+                delete itr;
             } else {
                 prev->next = itr->next;
                 if (itr == _tail) {
